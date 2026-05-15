@@ -6,7 +6,7 @@ Code for all numerical calculations in *A. Alase, M. C. Goffage, M. C. Cassidy, 
 
 This repository contains the code and data used to generate the results and figures presented in our paper *A. Alase, M. C. Goffage, M. C. Cassidy, S. N. Coppersmith, Decoherence in Majorana Qubits by 1/f Noise (2025)*. This code uses the covariance matrix method to calculate the time evolution of the tetron qubit, composed of two Kitaev chains, in the presence of a two-level-fluctuator (TLF) and returns the probability of exciting a quasiparticle pair in a single Kitaev chain of the qubit. See the Methods section and Sec. 3 of the Supplementary Information of our paper for further details on the calculations.  
 
-For a more in-depth overview of our numerical package, called **QPP_Library**, please see Appendix B of our earlier paper, *M. C. Goffage, A. Alase, M. C. Cassidy, S. N. Coppersmith, Leakage at zero temperature from changes in chemical potential in Majorana qubits, arXiv:2504.17485 (2025)*, which employs the same library as the submitted paper.  
+For a more in-depth overview of our numerical package, called **QPP_Library**, please see Appendix B of our earlier paper, *M. C. Goffage, A. Alase, M. C. Cassidy, S. N. Coppersmith, Leakage at zero temperature from changes in chemical potential in Majorana qubits, arXiv:2504.17485 (2026)*, which employs the same library as the submitted paper.  
 
 Note that since our numerical results are statistical averages over multiple two-level-fluctuator (TLF) noise realisations, we expect minor differences in the plots between consecutive runs.  
 

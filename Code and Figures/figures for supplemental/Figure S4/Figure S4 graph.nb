@@ -1,0 +1,2632 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    112860,       2624]
+NotebookOptionsPosition[    112058,       2602]
+NotebookOutlinePosition[    112452,       2618]
+CellTagsIndexPosition[    112409,       2615]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Plot", " ", "of", " ", "data", " ", "for", " ", "T2Hahn", " ", "versus", 
+     " ", "temperature", " ", "from", " ", "Figure", " ", "3", "B", " ", "of",
+      " ", "Huang", " ", "et", " ", 
+     RowBox[{"al", "."}]}], ",", " ", 
+    RowBox[{"Nature", " ", "627"}], ",", 
+    RowBox[{"772", "-", 
+     RowBox[{"777", " ", 
+      RowBox[{"(", "2024", ")"}]}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Data", " ", "for", " ", "this", " ", "paper", " ", "is", " ", 
+     "deposited", " ", "at", " ", 
+     RowBox[{"https", ":"}]}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"doi", ".", "org"}], "/", "10.5281"}], "/", "zenodo"}], 
+     ".10452860"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Data", " ", "for", " ", "T2Hahn", " ", "versus", " ", "temperature", " ", 
+    "from", " ", 
+    RowBox[{"Fig", ".", " ", "3"}], "B", " ", "is", " ", "shown"}], " ", 
+   "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"3", " ", "data", " ", 
+    RowBox[{"sets", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"triples", " ", "are", " ", "temperature"}], ",", " ", "T2Hahn", 
+    ",", " ", "T2Hahn_error"}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"data1", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0.14", ",", "0.00009585", ",", "0.00000241"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.2", ",", "0.00009354", ",", "0.00000240"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.3", ",", "0.00008391", ",", "0.00000227"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.4", ",", "0.00007292", ",", "0.00000177"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.5", ",", "0.00006188", ",", "0.00000191"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.6", ",", "0.00005193", ",", "0.00000125"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.7", ",", "0.00004521", ",", "0.00000143"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.8", ",", "0.00004047", ",", "0.00000147"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.9", ",", "0.00003704", ",", "0.00000113"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0.00003265", ",", "0.00000132"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "0.00002985", ",", "0.00000108"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.2", ",", "0.00002741", ",", "0.00000106"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.3", ",", "0.00002458", ",", "0.00000125"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.4", ",", "0.00002215", ",", "0.00000132"}], "}"}]}], 
+      "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data2", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0.14", ",", "0.00005987", ",", "0.00000159"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.2", ",", "0.00005714", ",", "0.00000181"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.3", ",", "0.00005470", ",", "0.00000142"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.4", ",", "0.00005258", ",", "0.00000192"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.5", ",", "0.00004962", ",", "0.00000157"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.6", ",", "0.00004526", ",", "0.00000172"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.7", ",", "0.00004086", ",", "0.00000150"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.8", ",", "0.00003718", ",", "0.00000117"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.9", ",", "0.00003449", ",", "0.00000182"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0.00002986", ",", "0.00000128"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "0.00002721", ",", "0.00000225"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.2", ",", "0.00002389", ",", "0.00000274"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.3", ",", "0.00002153", ",", "0.00000369"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.4", ",", "0.00001881", ",", "0.00000201"}], "}"}]}], 
+      "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data3", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0.14", ",", "0.00009384", ",", "0.00000178"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.2", ",", "0.00009183", ",", "0.00000142"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.3", ",", "0.00008420", ",", "0.00000212"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.4", ",", "0.00007828", ",", "0.00000201"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.5", ",", "0.00007077", ",", "0.00000190"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.6", ",", "0.00006450", ",", "0.00000175"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.7", ",", "0.00005605", ",", "0.00000148"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.8", ",", "0.00004865", ",", "0.00000158"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0.9", ",", "0.00004265", ",", "0.00000140"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0.00003666", ",", "0.00000124"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "0.00003359", ",", "0.00000128"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.2", ",", "0.00003074", ",", "0.00000109"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.3", ",", "0.00002756", ",", "0.00000137"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1.4", ",", "0.00002462", ",", "0.00000226"}], "}"}]}], 
+      "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "change", " ", "time", " ", "units", " ", "to", " ", "microseconds"}], 
+    " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data1ms", "=", "data1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data1ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data1ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data2ms", "=", "data2"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data2ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data2ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data3ms", "=", "data3"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data3ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"data3ms", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}], "*=", 
+     RowBox[{"10", "^", "6"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "now", " ", "add", " ", "lines", " ", "that", " ", "are", " ", "the", " ",
+      "best", " ", "fit", " ", "to", " ", "a", " ", 
+     RowBox[{"T", "^", 
+      RowBox[{"-", "1"}]}], " ", "dependence", " ", "for", " ", "electron", 
+     " ", "temperatures", " ", "of", " ", "0.5", " ", "K", " ", "or", " ", 
+     "higher"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot1", "=", 
+     RowBox[{"ListLogLogPlot", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#1", ",", 
+           RowBox[{"Around", "[", 
+            RowBox[{"#2", ",", "#3"}], "]"}]}], "}"}], "&"}], "@@@", 
+        "data1ms"}], ",", 
+       RowBox[{"Frame", "->", "True"}], ",", 
+       RowBox[{"FrameStyle", "->", "Black"}], ",", 
+       RowBox[{"BaseStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"FontSize", "->", "14"}], ",", 
+          RowBox[{"FontFamily", "->", "\"\<Helvetica\>\""}]}], "}"}]}], ",", 
+       RowBox[{"FrameLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\>\"", ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Electron temp (K)\>\"", ",", "None"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"FrameTicks", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50", ",", "100", ",", "200", ",", "500"}], 
+             "}"}], ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0.1", ",", "0.2", ",", "0.5", ",", "1", ",", "2"}], 
+             "}"}], ",", "None"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0.1", ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"10", ",", "200"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"PointSize", "[", "0.015", "]"}]}], "}"}]}], ",", 
+       RowBox[{"GridLines", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "0.1", ",", "0.2", ",", "0.3", ",", "0.4", ",", "0.5", ",", "1"}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"20", ",", "50", ",", "100", ",", "200"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"230", ",", "200"}], "}"}]}], ",", 
+       RowBox[{"AspectRatio", "->", "Full"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Select", " ", "data", " ", "with", " ", "T"}], ">=", 
+     RowBox[{"0.6", " ", "and", " ", "drop", " ", "uncertainties"}]}], "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fitData", "=", 
+     RowBox[{
+      RowBox[{"Select", "[", 
+       RowBox[{"data1ms", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ">=", "0.6"}], "&"}]}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Fit", " ", "y"}], "=", 
+     RowBox[{"A", " ", 
+      RowBox[{"T", "^", 
+       RowBox[{"-", "1"}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fit", "=", 
+     RowBox[{"FindFit", "[", 
+      RowBox[{"fitData", ",", 
+       RowBox[{"A", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", "A", ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Afit", "=", 
+     RowBox[{"A", "/.", " ", "fit"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Fit", " ", "line", " ", "that", " ", "extrapolates", " ", "but", " ", 
+     "stops", " ", "at", " ", "plot", " ", "edge"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fitLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{
+       RowBox[{"Afit", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}], ",", 
+       RowBox[{"RegionFunction", "->", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], ",", 
+          RowBox[{"10", "<=", "y", "<=", "200"}]}], "]"}]}]}], "]"}]}], ";"}],
+    "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Add", " ", "horizontal", " ", "line", " ", "at", " ", "T_", 
+      RowBox[{"2", "^", "Hahn"}], " ", "of", " ", "100", " ", "\[Mu]s"}], ",",
+      " ", 
+     RowBox[{
+     "slightly", " ", "higher", " ", "than", " ", "data", " ", "point", " ", 
+      "at", " ", "lowest", " ", "temperature"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"horizontalLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{"102.", ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", "Combine", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot1withlines", "=", 
+     RowBox[{"Show", "[", 
+      RowBox[{"plot1", ",", "fitLine", ",", "horizontalLine"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "print", " ", "out", " ", "location", " ", "of", " ", "intersection"}], 
+    " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "intersection", " ", "of", " ", "red", " ", "lines", " ", "for", " ", 
+     "plot", " ", "1"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"y0", "=", "102."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Teff", "=", 
+     RowBox[{"Afit", "/", "y0"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"intersection", "=", 
+     RowBox[{"{", 
+      RowBox[{"Teff", ",", "y0"}], "}"}]}], ";", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<intersection (effective TLF temperature) for plot 1 = \>\"", ",", 
+      RowBox[{"NumberForm", "[", 
+       RowBox[{"Teff", ",", 
+        RowBox[{"{", 
+         RowBox[{"Infinity", ",", "2"}], "}"}]}], "]"}], ",", "\"\< K\>\""}], 
+     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"now", " ", "do", " ", "plot2"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot2", "=", 
+     RowBox[{"ListLogLogPlot", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#1", ",", 
+           RowBox[{"Around", "[", 
+            RowBox[{"#2", ",", "#3"}], "]"}]}], "}"}], "&"}], "@@@", 
+        "data2ms"}], ",", 
+       RowBox[{"Frame", "->", "True"}], ",", 
+       RowBox[{"FrameStyle", "->", "Black"}], ",", 
+       RowBox[{"BaseStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"FontSize", "->", "14"}], ",", 
+          RowBox[{"FontFamily", "->", "\"\<Helvetica\>\""}]}], "}"}]}], ",", 
+       RowBox[{"FrameLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\>\"", ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Electron temp (K)\>\"", ",", "None"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"FrameTicks", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50", ",", "100", ",", "200", ",", "500"}], 
+             "}"}], ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0.1", ",", "0.2", ",", "0.5", ",", "1", ",", "2"}], 
+             "}"}], ",", "None"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0.1", ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"10", ",", "200"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"PointSize", "[", "0.015", "]"}]}], "}"}]}], ",", 
+       RowBox[{"GridLines", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "0.1", ",", "0.2", ",", "0.3", ",", "0.4", ",", "0.5", ",", "1"}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"20", ",", "50", ",", "100", ",", "200"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"230", ",", "200"}], "}"}]}], ",", 
+       RowBox[{"AspectRatio", "->", "Full"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Select", " ", "data", " ", "with", " ", "T"}], ">=", 
+     RowBox[{"0.6", " ", "and", " ", "drop", " ", "uncertainties"}]}], "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fitData", "=", 
+     RowBox[{
+      RowBox[{"Select", "[", 
+       RowBox[{"data2ms", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ">=", "0.6"}], "&"}]}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Fit", " ", "y"}], "=", 
+     RowBox[{"A", " ", 
+      RowBox[{"T", "^", 
+       RowBox[{"-", "1"}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fit", "=", 
+     RowBox[{"FindFit", "[", 
+      RowBox[{"fitData", ",", 
+       RowBox[{"A", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", "A", ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Afit", "=", 
+     RowBox[{"A", "/.", " ", "fit"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Fit", " ", "line", " ", "that", " ", "extrapolates", " ", "but", " ", 
+     "stops", " ", "at", " ", "plot", " ", "edge"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"fitLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{
+       RowBox[{"Afit", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}], ",", 
+       RowBox[{"RegionFunction", "->", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], ",", 
+          RowBox[{"10", "<=", "y", "<=", "200"}]}], "]"}]}]}], "]"}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Add", " ", "horizontal", " ", "line", " ", "at", " ", "T_", 
+      RowBox[{"2", "^", "Hahn"}], " ", "of", " ", "100", " ", "\[Mu]s"}], ",",
+      " ", 
+     RowBox[{
+     "slightly", " ", "higher", " ", "than", " ", "data", " ", "point", " ", 
+      "at", " ", "lowest", " ", "temperature"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"horizontalLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{"65.", ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"y0", "=", "65."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Teff", "=", 
+     RowBox[{"Afit", "/", "y0"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"intersection", "=", 
+     RowBox[{"{", 
+      RowBox[{"Teff", ",", "y0"}], "}"}]}], ";", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<intersection (effective TLF temperature) for plot 2 = \>\"", ",", 
+      RowBox[{"NumberForm", "[", 
+       RowBox[{"Teff", ",", 
+        RowBox[{"{", 
+         RowBox[{"Infinity", ",", "2"}], "}"}]}], "]"}], ",", "\"\< K\>\""}], 
+     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", "Combine", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot2withlines", "=", 
+     RowBox[{"Show", "[", 
+      RowBox[{"plot2", ",", "fitLine", ",", "horizontalLine"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"now", " ", "do", " ", "plot3"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot3", "=", 
+     RowBox[{"ListLogLogPlot", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#1", ",", 
+           RowBox[{"Around", "[", 
+            RowBox[{"#2", ",", "#3"}], "]"}]}], "}"}], "&"}], "@@@", 
+        "data3ms"}], ",", 
+       RowBox[{"Frame", "->", "True"}], ",", 
+       RowBox[{"FrameStyle", "->", "Black"}], ",", 
+       RowBox[{"BaseStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"FontSize", "->", "14"}], ",", 
+          RowBox[{"FontFamily", "->", "\"\<Helvetica\>\""}]}], "}"}]}], ",", 
+       RowBox[{"FrameLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\>\"", ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Electron temp (K)\>\"", ",", "None"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"FrameTicks", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"20", ",", "50", ",", "100", ",", "200", ",", "500"}], 
+             "}"}], ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0.1", ",", "0.2", ",", "0.5", ",", "1", ",", "2"}], 
+             "}"}], ",", "None"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0.1", ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"10", ",", "200"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"PointSize", "[", "0.015", "]"}]}], "}"}]}], ",", 
+       RowBox[{"GridLines", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "0.1", ",", "0.2", ",", "0.3", ",", "0.4", ",", "0.5", ",", "1"}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"20", ",", "50", ",", "100", ",", "200"}], "}"}]}], 
+         "}"}]}], ",", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"230", ",", "200"}], "}"}]}], ",", 
+       RowBox[{"AspectRatio", "->", "Full"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Select", " ", "data", " ", "with", " ", "T"}], ">=", 
+     RowBox[{"0.6", " ", "and", " ", "drop", " ", "uncertainties"}]}], "*)"}],
+    "\n", 
+   RowBox[{
+    RowBox[{"fitData", "=", 
+     RowBox[{
+      RowBox[{"Select", "[", 
+       RowBox[{"data3ms", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ">=", "0.6"}], "&"}]}], "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Fit", " ", "y"}], "=", 
+     RowBox[{"A", " ", 
+      RowBox[{"T", "^", 
+       RowBox[{"-", "1"}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fit", "=", 
+     RowBox[{"FindFit", "[", 
+      RowBox[{"fitData", ",", 
+       RowBox[{"A", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", "A", ",", "x"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Afit", "=", 
+     RowBox[{"A", "/.", " ", "fit"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Fit", " ", "line", " ", "that", " ", "extrapolates", " ", "but", " ", 
+     "stops", " ", "at", " ", "plot", " ", "edge"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fitLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{
+       RowBox[{"Afit", " ", 
+        RowBox[{"x", "^", 
+         RowBox[{"-", "1"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}], ",", 
+       RowBox[{"RegionFunction", "->", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], ",", 
+          RowBox[{"10", "<=", "y", "<=", "200"}]}], "]"}]}]}], "]"}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Add", " ", "horizontal", " ", "line", " ", "at", " ", "T_", 
+      RowBox[{"2", "^", "Hahn"}], " ", "of", " ", "100", " ", "\[Mu]s"}], ",",
+      " ", 
+     RowBox[{
+     "slightly", " ", "higher", " ", "than", " ", "data", " ", "point", " ", 
+      "at", " ", "lowest", " ", "temperature"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"horizontalLine", "=", 
+     RowBox[{"LogLogPlot", "[", 
+      RowBox[{"100.", ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0.1", ",", "2"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"AbsoluteThickness", "[", "1", "]"}]}], "}"}]}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"y0", "=", "100."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Teff", "=", 
+     RowBox[{"Afit", "/", "y0"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"intersection", "=", 
+     RowBox[{"{", 
+      RowBox[{"Teff", ",", "y0"}], "}"}]}], ";", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<intersection (effective TLF temperature) for plot 3 = \>\"", ",", 
+      RowBox[{"NumberForm", "[", 
+       RowBox[{"Teff", ",", 
+        RowBox[{"{", 
+         RowBox[{"Infinity", ",", "2"}], "}"}]}], "]"}], ",", "\"\< K\>\""}], 
+     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", "Combine", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"plot3withlines", "=", 
+     RowBox[{"Show", "[", 
+      RowBox[{"plot3", ",", "fitLine", ",", "horizontalLine"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"now", " ", "combine", " ", "the", " ", "three", " ", "plots"}], 
+    " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"GraphicsRow", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "plot1withlines", ",", "plot2withlines", ",", "plot3withlines"}], "}"}],
+      ",", 
+     RowBox[{"Spacings", "->", "14"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.98572729153238*^9, 3.98572736841114*^9}, {
+   3.985727527998075*^9, 3.985727588410022*^9}, {3.985727631217469*^9, 
+   3.985727732955378*^9}, {3.9857325892793217`*^9, 3.985732629288373*^9}, {
+   3.9857336459266863`*^9, 3.985733664084051*^9}, 3.985733791958509*^9, {
+   3.98573535496455*^9, 3.9857353664745607`*^9}, {3.985978992233966*^9, 
+   3.985978999756392*^9}, 3.985979034944633*^9, {3.985979073706765*^9, 
+   3.9859791077945957`*^9}, {3.985979144001891*^9, 3.985979167760227*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"fb277407-84e2-4b79-bd42-56143f0f2650"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"intersection (effective TLF temperature) for plot 1 = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    InterpretationBox[
+     StyleBox["\<\"0.31\"\>",
+      ShowStringCharacters->False],
+     0.31425308244644595`,
+     AutoDelete->True],
+    NumberForm[#, {
+      DirectedInfinity[1], 2}]& ], "\[InvisibleSpace]", "\<\" K\"\>"}],
+  SequenceForm["intersection (effective TLF temperature) for plot 1 = ", 
+   NumberForm[0.31425308244644595`, {
+     DirectedInfinity[1], 2}], " K"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.985979123234568*^9, 3.985979169081972*^9, 
+  3.986076260694438*^9, 3.9866193899242783`*^9},
+ CellLabel->
+  "During evaluation of \
+In[20]:=",ExpressionUUID->"1eea3128-c93b-4ee8-b58b-9ba338bcf076"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"intersection (effective TLF temperature) for plot 2 = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    InterpretationBox[
+     StyleBox["\<\"0.44\"\>",
+      ShowStringCharacters->False],
+     0.4423047370222432,
+     AutoDelete->True],
+    NumberForm[#, {
+      DirectedInfinity[1], 2}]& ], "\[InvisibleSpace]", "\<\" K\"\>"}],
+  SequenceForm["intersection (effective TLF temperature) for plot 2 = ", 
+   NumberForm[0.4423047370222432, {
+     DirectedInfinity[1], 2}], " K"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.985979123234568*^9, 3.985979169081972*^9, 
+  3.986076260694438*^9, 3.9866193899572573`*^9},
+ CellLabel->
+  "During evaluation of \
+In[20]:=",ExpressionUUID->"f9a0835d-a34a-4654-ac6a-9abce71a60d0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"intersection (effective TLF temperature) for plot 3 = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    InterpretationBox[
+     StyleBox["\<\"0.38\"\>",
+      ShowStringCharacters->False],
+     0.380275478772816,
+     AutoDelete->True],
+    NumberForm[#, {
+      DirectedInfinity[1], 2}]& ], "\[InvisibleSpace]", "\<\" K\"\>"}],
+  SequenceForm["intersection (effective TLF temperature) for plot 3 = ", 
+   NumberForm[0.380275478772816, {
+     DirectedInfinity[1], 2}], " K"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.985979123234568*^9, 3.985979169081972*^9, 
+  3.986076260694438*^9, 3.986619389992258*^9},
+ CellLabel->
+  "During evaluation of \
+In[20]:=",ExpressionUUID->"34d4eb92-2f46-4593-ad37-c401b92c02a1"]
+}, Open  ]],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {InsetBox[
+     GraphicsBox[{{{{
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.9661128563728327`, 
+               4.537319519079917}, {-1.9661128563728327`, 
+               4.562784469491653}}], 
+              LineBox[{{-1.9661128563728327`, 
+               4.562784469491653}, {-1.9661128563728327`, 
+               4.587617026740502}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.6094379124341003`, 
+               4.512396785835737}, {-1.6094379124341003`, 4.53838915229774}}],
+               LineBox[{{-1.6094379124341003`, 
+               4.53838915229774}, {-1.6094379124341003`, 
+               4.563722996073918}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.2039728043259361`, 
+               4.402319337941645}, {-1.2039728043259361`, 
+               4.4297447958819784`}}], 
+              LineBox[{{-1.2039728043259361`, 
+               4.4297447958819784`}, {-1.2039728043259361`, 
+               4.456438132187692}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.916290731874155, 
+               4.264790324535861}, {-0.916290731874155, 4.289362949810462}}], 
+              LineBox[{{-0.916290731874155, 
+               4.289362949810462}, {-0.916290731874155, 4.313346214368975}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.6931471805599453, 
+               4.093844437180418}, {-0.6931471805599453, 4.125197025704865}}],
+               LineBox[{{-0.6931471805599453, 
+               4.125197025704865}, {-0.6931471805599453, 
+               4.1555964382538635`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.5108256237659907, 
+               3.925531355452938}, {-0.5108256237659907, 
+               3.9498966578562276`}}], 
+              LineBox[{{-0.5108256237659907, 
+               3.9498966578562276`}, {-0.5108256237659907, 
+               3.9736823858148735`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.35667494393873245`, 
+               3.779177092094717}, {-0.35667494393873245`, 
+               3.811318301306514}}], 
+              LineBox[{{-0.35667494393873245`, 
+               3.811318301306514}, {-0.35667494393873245`, 
+               3.842458542042237}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.2231435513142097, 
+               3.6635616461296467`}, {-0.2231435513142097, 
+               3.7005609588877744`}}], 
+              LineBox[{{-0.2231435513142097, 
+               3.7005609588877744`}, {-0.2231435513142097, 
+               3.736240025473774}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.10536051565782628`, 
+               3.581015808237991}, {-0.10536051565782628`, 
+               3.6119984097779785`}}], 
+              LineBox[{{-0.10536051565782628`, 
+               3.6119984097779785`}, {-0.10536051565782628`, 
+               3.642049866757138}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0., 3.4445761049641006`}, {0., 3.48584485572244}}], 
+              LineBox[{{0., 3.48584485572244}, {0., 3.5254777821724925`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.09531017980432493, 3.3593331775634563`}, {
+               0.09531017980432493, 3.396184839838611}}], 
+              LineBox[{{0.09531017980432493, 3.396184839838611}, {
+               0.09531017980432493, 3.4317265866969784`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.1823215567939546, 3.2714682749873716`}, {
+               0.1823215567939546, 3.3109079103146946`}}], 
+              LineBox[{{0.1823215567939546, 3.3109079103146946`}, {
+               0.1823215567939546, 3.3488509012899463`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.26236426446749106`, 3.1497400860333387`}, {
+               0.26236426446749106`, 3.201933104137889}}], 
+              LineBox[{{0.26236426446749106`, 3.201933104137889}, {
+               0.26236426446749106`, 3.251536607107749}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.3364722366212129, 3.03639425527288}, {
+               0.3364722366212129, 3.0978374964911444`}}], 
+              LineBox[{{0.3364722366212129, 3.0978374964911444`}, {
+               0.3364722366212129, 3.155723009862932}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}, {
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.9661128563728327`, 4.587617026740502}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.587617026740502}]}, {{-1.9661128563728327`, 
+                 4.587617026740502}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.587617026740502}]}, {{-1.9661128563728327`, 
+                 4.537319519079917}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.537319519079917}]}, {{-1.9661128563728327`, 
+                 4.537319519079917}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.537319519079917}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.6094379124341003`, 4.563722996073918}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.563722996073918}]}, {{-1.6094379124341003`, 
+                 4.563722996073918}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.563722996073918}]}, {{-1.6094379124341003`, 
+                 4.512396785835737}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.512396785835737}]}, {{-1.6094379124341003`, 
+                 4.512396785835737}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.512396785835737}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.2039728043259361`, 4.456438132187692}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  4.456438132187692}]}, {{-1.2039728043259361`, 
+                 4.456438132187692}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  4.456438132187692}]}, {{-1.2039728043259361`, 
+                 4.402319337941645}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  4.402319337941645}]}, {{-1.2039728043259361`, 
+                 4.402319337941645}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  4.402319337941645}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.916290731874155, 4.313346214368975}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  4.313346214368975}]}, {{-0.916290731874155, 
+                 4.313346214368975}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  4.313346214368975}]}, {{-0.916290731874155, 
+                 4.264790324535861}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  4.264790324535861}]}, {{-0.916290731874155, 
+                 4.264790324535861}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  4.264790324535861}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.6931471805599453, 4.1555964382538635`}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  4.1555964382538635`}]}, {{-0.6931471805599453, 
+                 4.1555964382538635`}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  4.1555964382538635`}]}, {{-0.6931471805599453, 
+                 4.093844437180418}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  4.093844437180418}]}, {{-0.6931471805599453, 
+                 4.093844437180418}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  4.093844437180418}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.5108256237659907, 3.9736823858148735`}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  3.9736823858148735`}]}, {{-0.5108256237659907, 
+                 3.9736823858148735`}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  3.9736823858148735`}]}, {{-0.5108256237659907, 
+                 3.925531355452938}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  3.925531355452938}]}, {{-0.5108256237659907, 
+                 3.925531355452938}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  3.925531355452938}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.35667494393873245`, 3.842458542042237}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  3.842458542042237}]}, {{-0.35667494393873245`, 
+                 3.842458542042237}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  3.842458542042237}]}, {{-0.35667494393873245`, 
+                 3.779177092094717}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  3.779177092094717}]}, {{-0.35667494393873245`, 
+                 3.779177092094717}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  3.779177092094717}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.2231435513142097, 3.736240025473774}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.736240025473774}]}, {{-0.2231435513142097, 
+                 3.736240025473774}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.736240025473774}]}, {{-0.2231435513142097, 
+                 3.6635616461296467`}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.6635616461296467`}]}, {{-0.2231435513142097, 
+                 3.6635616461296467`}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.6635616461296467`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.10536051565782628`, 3.642049866757138}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.642049866757138}]}, {{-0.10536051565782628`, 
+                 3.642049866757138}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.642049866757138}]}, {{-0.10536051565782628`, 
+                 3.581015808237991}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.581015808237991}]}, {{-0.10536051565782628`, 
+                 3.581015808237991}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.581015808237991}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0., 3.5254777821724925`}, 
+                 Offset[{3, 0}, {0., 3.5254777821724925`}]}, {{0., 
+                 3.5254777821724925`}, 
+                 Offset[{-3, 0}, {0., 3.5254777821724925`}]}, {{0., 
+                 3.4445761049641006`}, 
+                 Offset[{3, 0}, {0., 3.4445761049641006`}]}, {{0., 
+                 3.4445761049641006`}, 
+                 Offset[{-3, 0}, {0., 3.4445761049641006`}]}}], {{{1., 0.}, {
+               0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.09531017980432493, 3.4317265866969784`}, 
+                 Offset[{3, 0}, {0.09531017980432493, 
+                  3.4317265866969784`}]}, {{0.09531017980432493, 
+                 3.4317265866969784`}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.4317265866969784`}]}, {{0.09531017980432493, 
+                 3.3593331775634563`}, 
+                 Offset[{3, 0}, {0.09531017980432493, 
+                  3.3593331775634563`}]}, {{0.09531017980432493, 
+                 3.3593331775634563`}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.3593331775634563`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.1823215567939546, 3.3488509012899463`}, 
+                 Offset[{3, 0}, {0.1823215567939546, 
+                  3.3488509012899463`}]}, {{0.1823215567939546, 
+                 3.3488509012899463`}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 
+                  3.3488509012899463`}]}, {{0.1823215567939546, 
+                 3.2714682749873716`}, 
+                 Offset[{3, 0}, {0.1823215567939546, 
+                  3.2714682749873716`}]}, {{0.1823215567939546, 
+                 3.2714682749873716`}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 
+                  3.2714682749873716`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.26236426446749106`, 3.251536607107749}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 
+                  3.251536607107749}]}, {{0.26236426446749106`, 
+                 3.251536607107749}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  3.251536607107749}]}, {{0.26236426446749106`, 
+                 3.1497400860333387`}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 
+                  3.1497400860333387`}]}, {{0.26236426446749106`, 
+                 3.1497400860333387`}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  3.1497400860333387`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.3364722366212129, 3.155723009862932}, 
+                 Offset[{3, 0}, {0.3364722366212129, 3.155723009862932}]}, {{
+                 0.3364722366212129, 3.155723009862932}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 3.155723009862932}]}, {{
+                 0.3364722366212129, 3.03639425527288}, 
+                 Offset[{3, 0}, {0.3364722366212129, 3.03639425527288}]}, {{
+                 0.3364722366212129, 3.03639425527288}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 
+                  3.03639425527288}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}}, 
+        {GrayLevel[0], PointSize[0.015], AbsoluteThickness[1.6], 
+         StyleBox[
+          PointBox[{{-1.9661128563728327`, 
+           4.562784469491653}, {-1.6094379124341003`, 
+           4.53838915229774}, {-1.2039728043259361`, 
+           4.4297447958819784`}, {-0.916290731874155, 
+           4.289362949810462}, {-0.6931471805599453, 
+           4.125197025704865}, {-0.5108256237659907, 
+           3.9498966578562276`}, {-0.35667494393873245`, 
+           3.811318301306514}, {-0.2231435513142097, 
+           3.7005609588877744`}, {-0.10536051565782628`, 
+           3.6119984097779785`}, {0., 3.48584485572244}, {0.09531017980432493,
+            3.396184839838611}, {0.1823215567939546, 3.3109079103146946`}, {
+           0.26236426446749106`, 3.201933104137889}, {0.3364722366212129, 
+           3.0978374964911444`}}],
+          FontFamily->"Helvetica",
+          FontSize->14]}, {{}, {}}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJwBEQTu+yFib1JlAgAAAEAAAAACAAAAOicgomhL/b+YbRmCfDEVQHWBf42d
+Af2/J0TxvAkfFUB4M76ndRH8v6jwgMP/4hRAIfRFYAsN+7/S4KIx5aEUQOuj
+ssvuGfq/xQx+DB5lFEBYTdCNmiv5vyB3Bf2IKRRAawU37gMp+L8lJR9V4+gT
+QJ+sggG7N/e/8g7yGZGsE0B5YhezLzL2v2g8V0YuaxNA9RFdu2wx9b9HqGiI
+/SoTQJKwh3b3QfS/7k8zNyDvEkDVXfvPPz7zvz87kE0yrhJAOfpT3NVL8r9Y
+YqbQl3ESQEOl9YYpRfG/G81Ou+wvEkDwSUiIRUPwv0Z2o7tz7xFAe7v/eF6l
+7r85W7EoTrMRQGMAAR6tm+y/1oNR/RdyEUCMI8wol7Tqvzzoqj41NRFA+jn5
+4BHX6L8Ji7CVhPkQQLVtuNUH0ea/gXFIVMO4EECxf0Ewme3kv8CTmX9VfBBA
++q5cx6Xh4r+p+XwS1zoQQIjR2QtD3+C/9jsZdhX1D0CvpEFs9/7dvyn8qqAj
+fQ9A5eDzOV/u2b+xQ2GaEPsOQJ7ZOdP9Ita/yAKKbaSBDkDjuEPHvWrSv7A+
+C2ycCg5AgKXjaOjCzL/sAbE5c4kNQEBSZ9rCOsW/uDzJ4PAQDUBj6GZ8FCG6
+v9f+BVdNjgxApDyc5PzCpb+GOLWmUBQMQFZG7LJIRpA/B++8IbicC0AbVzPn
+yEi0P9ss6Wv+GgtASVWuOZK1wT8/4oeP66EKQNSJeg3T6Mk/9x5LgrceCkCl
+eN+V6PrQP3/YZqDnnQlA3e9t2TC81D+YCfWXviUJQH0s2KOCztg/BMKnXnSj
+CECarK6inZvcPwHyzP7QKQhAFqNgo8sq4D/OnkrKkbIHQJLS1zhNMOI/8NLs
+ZDExB0DNI4VoMxPkP6B+Adl3uAZAgq1bpp8b5D803IvJXLYGQDg3MuQLJOQ/
+xjkWukG0BkCiSt9f5DTkP+v0KpsLsAZAeHE5V5VW5D82a1Rdn6cGQCK/7UX3
+meQ/zFen4caWBkB4WlYjuyDlP/YwTeoVdQZALuQsYScp5T+Jjtfa+nIGQONt
+A5+TMeU/G+xhy99wBkBOgbAabELlP0CndqypbAZAI6gKEh1k5T+LHaBuPWQG
+QM71vgB/p+U/IArz8mRTBkCDf5U+66/lP7NnfeNJUQZAOAlsfFe45T9GxQfU
+Lk8GQKMcGfgvyeU/a4ActfhKBkB4Q3Pv4OrlP7b2RXeMQgZALs1JLU3z5T9I
+VNBncUAGQONWIGu5++U/27FaWFY+BkBOas3mkQzmPwBtbzkgOgZAA/SjJP4U
+5j+TyvkpBTgGQLh9emJqHeY/JiiEGuo1BkBuB1Gg1iXmP7iFDgvPMwZAI5En
+3kIu5j9L45j7szEGQGE06sM=
+            "]]},
+          Annotation[#, "Charting`Private`Tag$279828#1"]& ]}, {}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQ/WhVw+aN2UwH9h5vv/+jXsjBJuaqYLU+gj+dV6vA
+5TMjnD//+/ffWwsQfPNIi8Rz3xjg/AXmFz961SP4O61kF/v8/r8fxg/+WiMa
+yIngT96nqibM/A/OL22s753L+BfOrzDet7xU8A+cr/jFNYGb9zec/3rxptPv
+JH/B+RG+F3pnaf+E87NZzd8xa/6A8+evaWLcbf4dzq9MEt+sb/QNzv8qGLs7
+x/ArnD9pQ3vZd8cvcP7V2N/n7e0+w/mWv4LvXPX+BOc7L/3apun6Ec7/4OnR
+4er8Ac6v3v2/Im7pOzg/mYFRbu3sN3B+j/IZjelbXsH5vyx/PhC8/gLO35q7
+4yr7xWdw/sZ6R4OZb58g1K+LOb704SM4v+PiTW7n+w/g/PVLHHO+/7sL5z99
+8Nky/t1NOH/eTcvLf5WuwfmPdzgf35t1Cc5vWPo448WhM3C+Q1D6rUNWRxH+
+eZFWI6K4C85fYjPnyZ9DS+H8MLc3mzzcJtjD+NLhxs9PeGyB8z1D11lO2noQ
+zr/SWcV7+cVJOH9pxf2pL35dgPPvvs+9abDnCpxfq3NjcdO5G3D+rDXrFs2d
+fQfOF1ucsPi01gM4f9Kl6xa+Bo/g/LPKrRnGwk/g/IqoMOXdCk/hfOWJ6vec
+9J7B+QCJEd/c
+            "]]},
+          Annotation[#, "Charting`Private`Tag$279885#1"]& ]}, {}}},
+      AspectRatio->Full,
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{-2.30258509299404, 2.3025850929940512`},
+      BaseStyle->{FontSize -> 14, FontFamily -> "Helvetica"},
+      DisplayFunction->Identity,
+      Frame->{{True, True}, {True, True}},
+      FrameLabel->{{
+         FormBox[
+         "\"\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\"", TraditionalForm], None}, {
+         FormBox["\"Electron temp (K)\"", TraditionalForm], None}},
+      FrameStyle->GrayLevel[0],
+      FrameTicks->{{{{
+           NCache[
+            Log[20], 2.995732273553991], 
+           FormBox[
+            TagBox["20", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[50], 3.912023005428146], 
+           FormBox[
+            TagBox["50", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[100], 4.605170185988092], 
+           FormBox[
+            TagBox["100", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[200], 5.298317366548036], 
+           FormBox[
+            TagBox["200", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[500], 6.214608098422191], 
+           FormBox[
+            TagBox["500", HoldForm], 
+            TraditionalForm]}}, {}}, {{{-2.3025850929940455`, 
+           FormBox[
+            TagBox["0.1`", HoldForm], 
+            TraditionalForm]}, {-1.6094379124341003`, 
+           FormBox[
+            TagBox["0.2`", HoldForm], TraditionalForm]}, {-0.6931471805599453, 
+           FormBox[
+            TagBox["0.5`", HoldForm], TraditionalForm]}, {0, 
+           FormBox[
+            TagBox["1", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[2], 0.6931471805599453], 
+           FormBox[
+            TagBox["2", HoldForm], TraditionalForm]}}, {}}},
+      GridLines->
+       NCache[{{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+          Log[20], 
+          Log[50], 
+          Log[100], 
+          Log[
+          200]}}, {{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+         2.995732273553991, 3.912023005428146, 4.605170185988092, 
+         5.298317366548036}}],
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->{{52., 5.}, {38., 7.000000000000014}},
+      ImageSize->{230, 200},
+      Method->{
+       "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+        "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& )}},
+      PlotRange->{{-2.3025850929940455`, 0.6931471805599453}, {
+       2.302585092994046, 5.298317366548036}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{0, 0}, {0, 0}},
+      Ticks->{
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0], 
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0]}], {122, -105.}, 
+     ImageScaled[{0.5, 0.5}], {230, 200}], InsetBox[
+     GraphicsBox[{{{{
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.9661128563728327`, 
+               4.065258981327004}, {-1.9661128563728327`, 
+               4.092175544937261}}], 
+              LineBox[{{-1.9661128563728327`, 
+               4.092175544937261}, {-1.9661128563728327`, 
+               4.1183865567023386`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.6094379124341003`, 
+               4.013315256910019}, {-1.6094379124341003`, 
+               4.045504396802627}}], 
+              LineBox[{{-1.6094379124341003`, 
+               4.045504396802627}, {-1.6094379124341003`, 
+               4.076689626983381}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           StyleBox[{{}, {
+              LineBox[{{-1.2039728043259361`, 
+               3.9755610262321333`}, {-1.2039728043259361`, 
+               4.001863709427935}}], 
+              LineBox[{{-1.2039728043259361`, 
+               4.001863709427935}, {-1.2039728043259361`, 
+               4.02749225523426}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.916290731874155, 
+               3.9251366445735294`}, {-0.916290731874155, 
+               3.9623358193017353`}}], 
+              LineBox[{{-0.916290731874155, 
+               3.9623358193017353`}, {-0.916290731874155, 
+               3.9982007016691985`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.6931471805599453, 
+               3.8722421354163017`}, {-0.6931471805599453, 
+               3.904393978263655}}], 
+              LineBox[{{-0.6931471805599453, 
+               3.904393978263655}, {-0.6931471805599453, 
+               3.9355442004694923`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.5108256237659907, 
+               3.7736800558064014`}, {-0.5108256237659907, 
+               3.8124236402053913`}}], 
+              LineBox[{{-0.5108256237659907, 
+               3.8124236402053913`}, {-0.5108256237659907, 
+               3.849721979230767}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.35667494393873245`, 
+               3.6727500721840527`}, {-0.35667494393873245`, 
+               3.710151589389476}}], 
+              LineBox[{{-0.35667494393873245`, 
+               3.710151589389476}, {-0.35667494393873245`, 
+               3.746204520733206}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.2231435513142097, 
+               3.5837966776607835`}, {-0.2231435513142097, 
+               3.6157709822932977`}}], 
+              LineBox[{{-0.2231435513142097, 
+               3.6157709822932977`}, {-0.2231435513142097, 
+               3.646754527813265}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.10536051565782628`, 
+               3.4864572256129787`}, {-0.10536051565782628`, 
+               3.5406694269487495`}}], 
+              LineBox[{{-0.10536051565782628`, 
+               3.5406694269487495`}, {-0.10536051565782628`, 
+               3.5920931854262443`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0., 3.3527071725017215`}, {0., 3.3965197921110444`}}],
+               LineBox[{{0., 3.3965197921110444`}, {0., 
+               3.4384931664058525`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.09531017980432493, 3.217274543501227}, {
+               0.09531017980432493, 3.303584552795155}}], 
+              LineBox[{{0.09531017980432493, 3.303584552795155}, {
+               0.09531017980432493, 3.383033411034484}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.1823215567939546, 3.0516399054922867`}, {
+               0.1823215567939546, 3.173459961337718}}], 
+              LineBox[{{0.1823215567939546, 3.173459961337718}, {
+               0.1823215567939546, 3.282038399825841}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.26236426446749106`, 2.8814431271518632`}, {
+               0.26236426446749106`, 3.0694473113762717`}}], 
+              LineBox[{{0.26236426446749106`, 3.0694473113762717`}, {
+               0.26236426446749106`, 3.2276373305367736`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.3364722366212129, 2.8213788864092133`}, {
+               0.3364722366212129, 2.934388643312939}}], 
+              LineBox[{{0.3364722366212129, 2.934388643312939}, {
+               0.3364722366212129, 3.035914063186823}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}, {
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.9661128563728327`, 4.1183865567023386`}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.1183865567023386`}]}, {{-1.9661128563728327`, 
+                 4.1183865567023386`}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.1183865567023386`}]}, {{-1.9661128563728327`, 
+                 4.065258981327004}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.065258981327004}]}, {{-1.9661128563728327`, 
+                 4.065258981327004}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.065258981327004}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.6094379124341003`, 4.076689626983381}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.076689626983381}]}, {{-1.6094379124341003`, 
+                 4.076689626983381}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.076689626983381}]}, {{-1.6094379124341003`, 
+                 4.013315256910019}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.013315256910019}]}, {{-1.6094379124341003`, 
+                 4.013315256910019}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.013315256910019}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.2039728043259361`, 4.02749225523426}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  4.02749225523426}]}, {{-1.2039728043259361`, 
+                 4.02749225523426}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  4.02749225523426}]}, {{-1.2039728043259361`, 
+                 3.9755610262321333`}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  3.9755610262321333`}]}, {{-1.2039728043259361`, 
+                 3.9755610262321333`}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  3.9755610262321333`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.916290731874155, 3.9982007016691985`}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  3.9982007016691985`}]}, {{-0.916290731874155, 
+                 3.9982007016691985`}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  3.9982007016691985`}]}, {{-0.916290731874155, 
+                 3.9251366445735294`}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  3.9251366445735294`}]}, {{-0.916290731874155, 
+                 3.9251366445735294`}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  3.9251366445735294`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.6931471805599453, 3.9355442004694923`}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  3.9355442004694923`}]}, {{-0.6931471805599453, 
+                 3.9355442004694923`}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  3.9355442004694923`}]}, {{-0.6931471805599453, 
+                 3.8722421354163017`}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  3.8722421354163017`}]}, {{-0.6931471805599453, 
+                 3.8722421354163017`}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  3.8722421354163017`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.5108256237659907, 3.849721979230767}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  3.849721979230767}]}, {{-0.5108256237659907, 
+                 3.849721979230767}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  3.849721979230767}]}, {{-0.5108256237659907, 
+                 3.7736800558064014`}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  3.7736800558064014`}]}, {{-0.5108256237659907, 
+                 3.7736800558064014`}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  3.7736800558064014`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.35667494393873245`, 3.746204520733206}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  3.746204520733206}]}, {{-0.35667494393873245`, 
+                 3.746204520733206}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  3.746204520733206}]}, {{-0.35667494393873245`, 
+                 3.6727500721840527`}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  3.6727500721840527`}]}, {{-0.35667494393873245`, 
+                 3.6727500721840527`}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  3.6727500721840527`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.2231435513142097, 3.646754527813265}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.646754527813265}]}, {{-0.2231435513142097, 
+                 3.646754527813265}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.646754527813265}]}, {{-0.2231435513142097, 
+                 3.5837966776607835`}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.5837966776607835`}]}, {{-0.2231435513142097, 
+                 3.5837966776607835`}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.5837966776607835`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.10536051565782628`, 3.5920931854262443`}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.5920931854262443`}]}, {{-0.10536051565782628`, 
+                 3.5920931854262443`}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.5920931854262443`}]}, {{-0.10536051565782628`, 
+                 3.4864572256129787`}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.4864572256129787`}]}, {{-0.10536051565782628`, 
+                 3.4864572256129787`}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.4864572256129787`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0., 3.4384931664058525`}, 
+                 Offset[{3, 0}, {0., 3.4384931664058525`}]}, {{0., 
+                 3.4384931664058525`}, 
+                 Offset[{-3, 0}, {0., 3.4384931664058525`}]}, {{0., 
+                 3.3527071725017215`}, 
+                 Offset[{3, 0}, {0., 3.3527071725017215`}]}, {{0., 
+                 3.3527071725017215`}, 
+                 Offset[{-3, 0}, {0., 3.3527071725017215`}]}}], {{{1., 0.}, {
+               0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.09531017980432493, 3.383033411034484}, 
+                 Offset[{3, 0}, {0.09531017980432493, 3.383033411034484}]}, {{
+                 0.09531017980432493, 3.383033411034484}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.383033411034484}]}, {{0.09531017980432493, 
+                 3.217274543501227}, 
+                 Offset[{3, 0}, {0.09531017980432493, 3.217274543501227}]}, {{
+                 0.09531017980432493, 3.217274543501227}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.217274543501227}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.1823215567939546, 3.282038399825841}, 
+                 Offset[{3, 0}, {0.1823215567939546, 3.282038399825841}]}, {{
+                 0.1823215567939546, 3.282038399825841}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 3.282038399825841}]}, {{
+                 0.1823215567939546, 3.0516399054922867`}, 
+                 Offset[{3, 0}, {0.1823215567939546, 
+                  3.0516399054922867`}]}, {{0.1823215567939546, 
+                 3.0516399054922867`}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 
+                  3.0516399054922867`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.26236426446749106`, 3.2276373305367736`}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 
+                  3.2276373305367736`}]}, {{0.26236426446749106`, 
+                 3.2276373305367736`}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  3.2276373305367736`}]}, {{0.26236426446749106`, 
+                 2.8814431271518632`}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 
+                  2.8814431271518632`}]}, {{0.26236426446749106`, 
+                 2.8814431271518632`}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  2.8814431271518632`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.3364722366212129, 3.035914063186823}, 
+                 Offset[{3, 0}, {0.3364722366212129, 3.035914063186823}]}, {{
+                 0.3364722366212129, 3.035914063186823}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 3.035914063186823}]}, {{
+                 0.3364722366212129, 2.8213788864092133`}, 
+                 Offset[{3, 0}, {0.3364722366212129, 
+                  2.8213788864092133`}]}, {{0.3364722366212129, 
+                 2.8213788864092133`}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 
+                  2.8213788864092133`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}}, 
+        {GrayLevel[0], PointSize[0.015], AbsoluteThickness[1.6], 
+         StyleBox[
+          PointBox[{{-1.9661128563728327`, 
+           4.092175544937261}, {-1.6094379124341003`, 
+           4.045504396802627}, {-1.2039728043259361`, 
+           4.001863709427935}, {-0.916290731874155, 
+           3.9623358193017353`}, {-0.6931471805599453, 
+           3.904393978263655}, {-0.5108256237659907, 
+           3.8124236402053913`}, {-0.35667494393873245`, 
+           3.710151589389476}, {-0.2231435513142097, 
+           3.6157709822932977`}, {-0.10536051565782628`, 
+           3.5406694269487495`}, {0., 3.3965197921110444`}, {
+           0.09531017980432493, 3.303584552795155}, {0.1823215567939546, 
+           3.173459961337718}, {0.26236426446749106`, 3.0694473113762717`}, {
+           0.3364722366212129, 2.934388643312939}}],
+          FontFamily->"Helvetica",
+          FontSize->14]}, {{}, {}}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJwBIQTe+yFib1JlAgAAAEEAAAACAAAAnzRDvu4I/79ajFKseDEVQJO+JSYT
+A/6/1y5LxgHwFEB1gX+NnQH9v4+fIWCkrxRAeDO+p3UR/L8QTLFmmnMUQCH0
+RWALDfu/OjzT1H8yFEDro7LL7hn6vy1orq+49RNAWE3QjZor+b+I0jWgI7oT
+QGsFN+4DKfi/jIBP+H15E0CfrIIBuzf3v1pqIr0rPRNAeWIXsy8y9r/Ql4fp
+yPsSQPURXbtsMfW/rwOZK5i7EkCSsId290H0v1arY9q6fxJA1V37zz8+87+n
+lsDwzD4SQDn6U9zVS/K/wL3WczICEkBDpfWGKUXxv4Mof16HwBFA8ElIiEVD
+8L+u0dNeDoARQHu7/3hepe6/obbhy+hDEUBjAAEerZvsvz7fgaCyAhFAjCPM
+KJe06r+jQ9vhz8UQQPo5+eAR1+i/cebgOB+KEEC1bbjVB9Hmv+jMePddSRBA
+sX9BMJnt5L8o78ki8AwQQPquXMel4eK/Iqpaa+OWD0CI0dkLQ9/gv8byebxK
+Fg9Ar6RBbPf+3b/5sgvnWJ4OQOXg8zlf7tm/gfrB4EUcDkCe2TnT/SLWv5i5
+6rPZog1A47hDx71q0r+A9Wuy0SsNQICl42jowsy/u7gRgKiqDEBAUmfawjrF
+v4jzKScmMgxAY+hmfBQhur+ntWadgq8LQKQ8nOT8wqW/Vu8V7YU1C0BWRuyy
+SEaQP9elHWjtvQpAG1cz58hItD+r40myMzwKQElVrjmStcE/D5no1SDDCUDU
+iXoN0+jJP8bVq8jsPwlApXjflej60D9Pj8fmHL8IQN3vbdkwvNQ/aMBV3vNG
+CEB9LNijgs7YP9R4CKWpxAdAmqyuop2b3D/RqC1FBksHQBajYKPLKuA/nlWr
+EMfTBkCS0tc4TTDiP7+JTatmUgZAzSOFaDMT5D9wNWIfrdkFQIKtW6afG+Q/
+A5PsD5LXBUA4NzLkCyTkP5bwdgB31QVAokrfX+Q05D+7q4vhQNEFQHhxOVeV
+VuQ/BiK1o9TIBUAiv+1F95nkP5sOCCj8twVAeFpWI7sg5T/G560wS5YFQC7k
+LGEnKeU/WUU4ITCUBUDjbQOfkzHlP+uiwhEVkgVAToGwGmxC5T8QXtfy3o0F
+QCOoChIdZOU/W9QAtXKFBUDO9b4Af6flP/DAUzmadAVAg3+VPuuv5T+DHt4p
+f3IFQDgJbHxXuOU/FnxoGmRwBUCjHBn4L8nlPzs3ffstbAVAeENz7+Dq5T+G
+raa9wWMFQC7NSS1N8+U/GAsxrqZhBUDjViBrufvlP6tou56LXwVATmrN5pEM
+5j/QI9B/VVsFQAP0oyT+FOY/Y4FacDpZBUC4fXpiah3mP/be5GAfVwVAbgdR
+oNYl5j+IPG9RBFUFQCORJ95CLuY/G5r5QelSBUAvSfwx
+            "]]},
+          Annotation[#, "Charting`Private`Tag$280155#1"]& ]}, {}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQ/WhVw+aN2UwHSjWnTJ60ScDBJuaqYLU+gj+dV6vA
+5TMjnD//+/ffWwsQfPNIi8Rz3xjg/AXmFz961SP4O61kF/v8/r8fxg/+WiMa
+yIngT96nqibM/A/OL22s753L+BfOrzDet7xU8A+cr/jFNYGb9zec/3rxptPv
+JH/B+RG+F3pnaf+E87NZzd8xa/6A8+evaWLcbf4dzq9MEt+sb/QNzv8qGLs7
+x/ArnD9pQ3vZd8cvcP7V2N/n7e0+w/mWv4LvXPX+BOc7L/3apun6Ec7/4OnR
+4er8Ac6v3v2/Im7pOzg/mYFRbu3sN3B+j/IZjelbXsH5vyx/PhC8/gLO35q7
+4yr7xWdw/sZ6R4OZb58g1K+LOb704SM4v+PiTW7n+w/g/PVLHHO+/7sL5z99
+8Nky/t1NOH/eTcvLf5WuwfmPdzgf35t1Cc5vWPo448WhM3C+Q1D6rUNWRxH+
+eZFWI6K4C85fYjPnyZ9DS+H8MLc3mzzcJtjD+NLhxs9PeGyB8z1D11lO2noQ
+zr/SWcV7+cVJOH9pxf2pL35dgPPvvs+9abDnCpxfq3NjcdO5G3D+rDXrFs2d
+fQfOF1ucsPi01gM4f9Kl6xa+Bo/g/LPKrRnGwk/g/IqoMOXdCk/hfOWJ6vec
+9J7B+QC4B5mU
+            "]]},
+          Annotation[#, "Charting`Private`Tag$280212#1"]& ]}, {}}},
+      AspectRatio->Full,
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{-2.30258509299404, 2.3025850929940512`},
+      BaseStyle->{FontSize -> 14, FontFamily -> "Helvetica"},
+      DisplayFunction->Identity,
+      Frame->{{True, True}, {True, True}},
+      FrameLabel->{{
+         FormBox[
+         "\"\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\"", TraditionalForm], None}, {
+         FormBox["\"Electron temp (K)\"", TraditionalForm], None}},
+      FrameStyle->GrayLevel[0],
+      FrameTicks->{{{{
+           NCache[
+            Log[20], 2.995732273553991], 
+           FormBox[
+            TagBox["20", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[50], 3.912023005428146], 
+           FormBox[
+            TagBox["50", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[100], 4.605170185988092], 
+           FormBox[
+            TagBox["100", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[200], 5.298317366548036], 
+           FormBox[
+            TagBox["200", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[500], 6.214608098422191], 
+           FormBox[
+            TagBox["500", HoldForm], 
+            TraditionalForm]}}, {}}, {{{-2.3025850929940455`, 
+           FormBox[
+            TagBox["0.1`", HoldForm], 
+            TraditionalForm]}, {-1.6094379124341003`, 
+           FormBox[
+            TagBox["0.2`", HoldForm], TraditionalForm]}, {-0.6931471805599453, 
+           FormBox[
+            TagBox["0.5`", HoldForm], TraditionalForm]}, {0, 
+           FormBox[
+            TagBox["1", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[2], 0.6931471805599453], 
+           FormBox[
+            TagBox["2", HoldForm], TraditionalForm]}}, {}}},
+      GridLines->
+       NCache[{{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+          Log[20], 
+          Log[50], 
+          Log[100], 
+          Log[
+          200]}}, {{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+         2.995732273553991, 3.912023005428146, 4.605170185988092, 
+         5.298317366548036}}],
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->{{52., 5.}, {38., 7.000000000000014}},
+      ImageSize->{230, 200},
+      Method->{
+       "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+        "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& )}},
+      PlotRange->{{-2.3025850929940455`, 0.6931471805599453}, {
+       2.302585092994046, 5.298317366548036}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{0, 0}, {0, 0}},
+      Ticks->{
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0], 
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0]}], {366, -105.}, 
+     ImageScaled[{0.5, 0.5}], {230, 200}], InsetBox[
+     GraphicsBox[{{{{
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.9661128563728327`, 
+               4.5224405383890955`}, {-1.9661128563728327`, 
+               4.54159120434522}}], 
+              LineBox[{{-1.9661128563728327`, 
+               4.54159120434522}, {-1.9661128563728327`, 
+               4.560382003197957}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.6094379124341003`, 
+               4.5043548807492755`}, {-1.6094379124341003`, 
+               4.519939041625431}}], 
+              LineBox[{{-1.6094379124341003`, 
+               4.519939041625431}, {-1.6094379124341003`, 
+               4.535284058523925}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-1.2039728043259361`, 
+               4.40769438142246}, {-1.2039728043259361`, 
+               4.4331949212482815`}}], 
+              LineBox[{{-1.2039728043259361`, 
+               4.4331949212482815`}, {-1.2039728043259361`, 
+               4.45806132094988}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.916290731874155, 
+               4.334279676176147}, {-0.916290731874155, 4.360292142527875}}], 
+              LineBox[{{-0.916290731874155, 
+               4.360292142527875}, {-0.916290731874155, 4.385645080196593}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           StyleBox[{{}, {
+              LineBox[{{-0.6931471805599453, 
+               4.2322206695566065`}, {-0.6931471805599453, 
+               4.259435182087693}}], 
+              LineBox[{{-0.6931471805599453, 
+               4.259435182087693}, {-0.6931471805599453, 
+               4.2859286446285445`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.5108256237659907, 
+               4.139158578011893}, {-0.5108256237659907, 
+               4.1666652238017265`}}], 
+              LineBox[{{-0.5108256237659907, 
+               4.1666652238017265`}, {-0.5108256237659907, 
+               4.193435464866331}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.35667494393873245`, 
+               3.99948428119814}, {-0.35667494393873245`, 
+               4.026244149518169}}], 
+              LineBox[{{-0.35667494393873245`, 
+               4.026244149518169}, {-0.35667494393873245`, 
+               4.052306550875202}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.2231435513142097, 
+               3.851635855413051}, {-0.2231435513142097, 3.884651808632014}}],
+               LineBox[{{-0.2231435513142097, 
+               3.884651808632014}, {-0.2231435513142097, 
+               3.9166124577619534`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{-0.10536051565782628`, 
+               3.71965111278069}, {-0.10536051565782628`, 
+               3.753027273937688}}], 
+              LineBox[{{-0.10536051565782628`, 
+               3.753027273937688}, {-0.10536051565782628`, 
+               3.785325352382188}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0., 3.5672766323546874`}, {0., 3.6016862424115588`}}],
+               LineBox[{{0., 3.6016862424115588`}, {0., 3.634951112088381}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.09531017980432493, 3.475376779836407}, {
+               0.09531017980432493, 3.5142284036242013`}}], 
+              LineBox[{{0.09531017980432493, 3.5142284036242013`}, {
+               0.09531017980432493, 3.5516268606875596`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.1823215567939546, 3.3894621254437345`}, {
+               0.1823215567939546, 3.4255647381104497`}}], 
+              LineBox[{{0.1823215567939546, 3.4255647381104497`}, {
+               0.1823215567939546, 3.4604092412940015`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.26236426446749106`, 3.26537765851962}, {
+               0.26236426446749106`, 3.3163654461454577`}}], 
+              LineBox[{{0.26236426446749106`, 3.3163654461454577`}, {
+               0.26236426446749106`, 3.3648791189880436`}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{{}, {
+              LineBox[{{0.3364722366212129, 3.1072736482868986`}, {
+               0.3364722366212129, 3.2035591207563074`}}], 
+              LineBox[{{0.3364722366212129, 3.2035591207563074`}, {
+               0.3364722366212129, 3.291382515654949}}]}},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}, {
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.9661128563728327`, 4.560382003197957}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.560382003197957}]}, {{-1.9661128563728327`, 
+                 4.560382003197957}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.560382003197957}]}, {{-1.9661128563728327`, 
+                 4.5224405383890955`}, 
+                 Offset[{3, 0}, {-1.9661128563728327`, 
+                  4.5224405383890955`}]}, {{-1.9661128563728327`, 
+                 4.5224405383890955`}, 
+                 Offset[{-3, 0}, {-1.9661128563728327`, 
+                  4.5224405383890955`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.6094379124341003`, 4.535284058523925}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.535284058523925}]}, {{-1.6094379124341003`, 
+                 4.535284058523925}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.535284058523925}]}, {{-1.6094379124341003`, 
+                 4.5043548807492755`}, 
+                 Offset[{3, 0}, {-1.6094379124341003`, 
+                  4.5043548807492755`}]}, {{-1.6094379124341003`, 
+                 4.5043548807492755`}, 
+                 Offset[{-3, 0}, {-1.6094379124341003`, 
+                  4.5043548807492755`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-1.2039728043259361`, 4.45806132094988}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  4.45806132094988}]}, {{-1.2039728043259361`, 
+                 4.45806132094988}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  4.45806132094988}]}, {{-1.2039728043259361`, 
+                 4.40769438142246}, 
+                 Offset[{3, 0}, {-1.2039728043259361`, 
+                  4.40769438142246}]}, {{-1.2039728043259361`, 
+                 4.40769438142246}, 
+                 Offset[{-3, 0}, {-1.2039728043259361`, 
+                  4.40769438142246}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.916290731874155, 4.385645080196593}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  4.385645080196593}]}, {{-0.916290731874155, 
+                 4.385645080196593}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  4.385645080196593}]}, {{-0.916290731874155, 
+                 4.334279676176147}, 
+                 Offset[{3, 0}, {-0.916290731874155, 
+                  4.334279676176147}]}, {{-0.916290731874155, 
+                 4.334279676176147}, 
+                 Offset[{-3, 0}, {-0.916290731874155, 
+                  4.334279676176147}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.6931471805599453, 4.2859286446285445`}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  4.2859286446285445`}]}, {{-0.6931471805599453, 
+                 4.2859286446285445`}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  4.2859286446285445`}]}, {{-0.6931471805599453, 
+                 4.2322206695566065`}, 
+                 Offset[{3, 0}, {-0.6931471805599453, 
+                  4.2322206695566065`}]}, {{-0.6931471805599453, 
+                 4.2322206695566065`}, 
+                 Offset[{-3, 0}, {-0.6931471805599453, 
+                  4.2322206695566065`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.5108256237659907, 4.193435464866331}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  4.193435464866331}]}, {{-0.5108256237659907, 
+                 4.193435464866331}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  4.193435464866331}]}, {{-0.5108256237659907, 
+                 4.139158578011893}, 
+                 Offset[{3, 0}, {-0.5108256237659907, 
+                  4.139158578011893}]}, {{-0.5108256237659907, 
+                 4.139158578011893}, 
+                 Offset[{-3, 0}, {-0.5108256237659907, 
+                  4.139158578011893}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.35667494393873245`, 4.052306550875202}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  4.052306550875202}]}, {{-0.35667494393873245`, 
+                 4.052306550875202}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  4.052306550875202}]}, {{-0.35667494393873245`, 
+                 3.99948428119814}, 
+                 Offset[{3, 0}, {-0.35667494393873245`, 
+                  3.99948428119814}]}, {{-0.35667494393873245`, 
+                 3.99948428119814}, 
+                 Offset[{-3, 0}, {-0.35667494393873245`, 
+                  3.99948428119814}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.2231435513142097, 3.9166124577619534`}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.9166124577619534`}]}, {{-0.2231435513142097, 
+                 3.9166124577619534`}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.9166124577619534`}]}, {{-0.2231435513142097, 
+                 3.851635855413051}, 
+                 Offset[{3, 0}, {-0.2231435513142097, 
+                  3.851635855413051}]}, {{-0.2231435513142097, 
+                 3.851635855413051}, 
+                 Offset[{-3, 0}, {-0.2231435513142097, 
+                  3.851635855413051}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{-0.10536051565782628`, 3.785325352382188}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.785325352382188}]}, {{-0.10536051565782628`, 
+                 3.785325352382188}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.785325352382188}]}, {{-0.10536051565782628`, 
+                 3.71965111278069}, 
+                 Offset[{3, 0}, {-0.10536051565782628`, 
+                  3.71965111278069}]}, {{-0.10536051565782628`, 
+                 3.71965111278069}, 
+                 Offset[{-3, 0}, {-0.10536051565782628`, 
+                  3.71965111278069}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0., 3.634951112088381}, 
+                 Offset[{3, 0}, {0., 3.634951112088381}]}, {{0., 
+                 3.634951112088381}, 
+                 Offset[{-3, 0}, {0., 3.634951112088381}]}, {{0., 
+                 3.5672766323546874`}, 
+                 Offset[{3, 0}, {0., 3.5672766323546874`}]}, {{0., 
+                 3.5672766323546874`}, 
+                 Offset[{-3, 0}, {0., 3.5672766323546874`}]}}], {{{1., 0.}, {
+               0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.09531017980432493, 3.5516268606875596`}, 
+                 Offset[{3, 0}, {0.09531017980432493, 
+                  3.5516268606875596`}]}, {{0.09531017980432493, 
+                 3.5516268606875596`}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.5516268606875596`}]}, {{0.09531017980432493, 
+                 3.475376779836407}, 
+                 Offset[{3, 0}, {0.09531017980432493, 3.475376779836407}]}, {{
+                 0.09531017980432493, 3.475376779836407}, 
+                 Offset[{-3, 0}, {0.09531017980432493, 
+                  3.475376779836407}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.1823215567939546, 3.4604092412940015`}, 
+                 Offset[{3, 0}, {0.1823215567939546, 
+                  3.4604092412940015`}]}, {{0.1823215567939546, 
+                 3.4604092412940015`}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 
+                  3.4604092412940015`}]}, {{0.1823215567939546, 
+                 3.3894621254437345`}, 
+                 Offset[{3, 0}, {0.1823215567939546, 
+                  3.3894621254437345`}]}, {{0.1823215567939546, 
+                 3.3894621254437345`}, 
+                 Offset[{-3, 0}, {0.1823215567939546, 
+                  3.3894621254437345`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.26236426446749106`, 3.3648791189880436`}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 
+                  3.3648791189880436`}]}, {{0.26236426446749106`, 
+                 3.3648791189880436`}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  3.3648791189880436`}]}, {{0.26236426446749106`, 
+                 3.26537765851962}, 
+                 Offset[{3, 0}, {0.26236426446749106`, 3.26537765851962}]}, {{
+                 0.26236426446749106`, 3.26537765851962}, 
+                 Offset[{-3, 0}, {0.26236426446749106`, 
+                  3.26537765851962}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}, 
+          {GrayLevel[0], PointSize[0.015], 
+           
+           StyleBox[{
+             GeometricTransformationBox[
+              LineBox[{}], {{{1., 0.}, {0., 1.}}, {0., 0.}}], 
+             GeometricTransformationBox[
+              LineBox[{{{0.3364722366212129, 3.291382515654949}, 
+                 Offset[{3, 0}, {0.3364722366212129, 3.291382515654949}]}, {{
+                 0.3364722366212129, 3.291382515654949}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 3.291382515654949}]}, {{
+                 0.3364722366212129, 3.1072736482868986`}, 
+                 Offset[{3, 0}, {0.3364722366212129, 
+                  3.1072736482868986`}]}, {{0.3364722366212129, 
+                 3.1072736482868986`}, 
+                 Offset[{-3, 0}, {0.3364722366212129, 
+                  3.1072736482868986`}]}}], {{{1., 0.}, {0., 1.}}, {0., 0.}}]},
+            Antialiasing->False,
+            FontFamily->"Helvetica",
+            FontSize->14]}}}, 
+        {GrayLevel[0], PointSize[0.015], AbsoluteThickness[1.6], 
+         StyleBox[
+          PointBox[{{-1.9661128563728327`, 
+           4.54159120434522}, {-1.6094379124341003`, 
+           4.519939041625431}, {-1.2039728043259361`, 
+           4.4331949212482815`}, {-0.916290731874155, 
+           4.360292142527875}, {-0.6931471805599453, 
+           4.259435182087693}, {-0.5108256237659907, 
+           4.1666652238017265`}, {-0.35667494393873245`, 
+           4.026244149518169}, {-0.2231435513142097, 
+           3.884651808632014}, {-0.10536051565782628`, 3.753027273937688}, {
+           0., 3.6016862424115588`}, {0.09531017980432493, 
+           3.5142284036242013`}, {0.1823215567939546, 3.4255647381104497`}, {
+           0.26236426446749106`, 3.3163654461454577`}, {0.3364722366212129, 
+           3.2035591207563074`}}],
+          FontFamily->"Helvetica",
+          FontSize->14]}, {{}, {}}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJwB4QMe/CFib1JlAgAAAD0AAAACAAAAhkfyeFWP+r+udqu5djEVQOujssvu
+Gfq/yI1bDh0UFUBYTdCNmiv5vyP44v6H2BRAawU37gMp+L8opvxW4pcUQJ+s
+ggG7N/e/9Y/PG5BbFEB5YhezLzL2v2y9NEgtGhRA9RFdu2wx9b9LKUaK/NkT
+QJKwh3b3QfS/8tAQOR+eE0DVXfvPPz7zv0O8bU8xXRNAOfpT3NVL8r9c44PS
+liATQEOl9YYpRfG/Hk4sveveEkDwSUiIRUPwv0n3gL1ynhJAe7v/eF6l7r89
+3I4qTWISQGMAAR6tm+y/2gQv/xYhEkCMI8wol7Tqvz9piEA05BFA+jn54BHX
+6L8NDI6Xg6gRQLVtuNUH0ea/hPIlVsJnEUCxf0Ewme3kv8QUd4FUKxFA+q5c
+x6Xh4r+teloU1ukQQIjR2QtD3+C//h7qvImpEECvpEFs9/7dvxj/MtKQbRBA
+5eDzOV/u2b/cIg5PhywQQJ7ZOdP9Ita/zwRFcaLfD0DjuEPHvWrSv7dAxm+a
+aA9AgKXjaOjCzL/zA2w9cecOQEBSZ9rCOsW/vz6E5O5uDkBj6GZ8FCG6v90A
+wVpL7A1ApDyc5PzCpb+NOnCqTnINQFZG7LJIRpA/DvF3Jbb6DEAbVzPnyEi0
+P+IupG/8eAxASVWuOZK1wT9G5EKT6f8LQNSJeg3T6Mk//SAGhrV8C0CleN+V
+6PrQP4baIaTl+wpA3e9t2TC81D+fC7CbvIMKQH0s2KOCztg/C8RiYnIBCkCa
+rK6inZvcPwj0hwLPhwlAFqNgo8sq4D/VoAXOjxAJQJLS1zhNMOI/9tSnaC+P
+CEDNI4VoMxPkP6eAvNx1FghAgq1bpp8b5D863kbNWhQIQDg3MuQLJOQ/zTvR
+vT8SCECiSt9f5DTkP/L25Z4JDghAeHE5V5VW5D89bQ9hnQUIQCK/7UX3meQ/
+0lli5cT0B0B4WlYjuyDlP/0yCO4T0wdALuQsYScp5T+QkJLe+NAHQONtA5+T
+MeU/Iu4cz93OB0BOgbAabELlP0epMbCnygdAI6gKEh1k5T+SH1tyO8IHQM71
+vgB/p+U/Jwyu9mKxB0CDf5U+66/lP7ppOOdHrwdAOAlsfFe45T9Nx8LXLK0H
+QKMcGfgvyeU/coLXuPaoB0B4Q3Pv4OrlP734AHuKoAdALs1JLU3z5T9PVotr
+b54HQONWIGu5++U/4rMVXFScB0BOas3mkQzmPwdvKj0emAdAA/SjJP4U5j+a
+zLQtA5YHQLh9emJqHeY/LSo/HuiTB0BuB1Gg1iXmP7+HyQ7NkQdAI5En3kIu
+5j9R5VP/sY8HQClr2t4=
+            "]]},
+          Annotation[#, "Charting`Private`Tag$280482#1"]& ]}, {}}, {{{}, {}, 
+         TagBox[
+          {RGBColor[1, 0, 0], AbsoluteThickness[1], Opacity[1.], 
+           LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQ/WhVw+aN2UwHxEK37t6YLeRgE3NVsFofwZ/Oq1Xg
+8pkRzp///fvvrQUIvnmkReK5bwxw/gLzix+96hH8nVayi31+/98P4wd/rREN
+5ETwJ+9TVRNm/gfnlzbW985l/AvnVxjvW14q+AfOV/zimsDN+xvOf7140+l3
+kr/g/AjfC72ztH/C+dms5u+YNX/A+fPXNDHuNv8O51cmiW/WN/oG538VjN2d
+Y/gVzp+0ob3su+MXOP9q7O/z9naf4XzLX8F3rnp/gvOdl35t03T9COd/8PTo
+cHX+AOdX7/5fEbf0HZyfzMAot3b2Gzi/R/mMxvQtr+D8X5Y/HwhefwHnb83d
+cZX94jM4f2O9o8HMt08Q6tfFHF/68BGc33HxJrfz/Qdw/voljjnf/92F858+
++GwZ/+4mnD/vpuXlv0rX4PzHO5yP7826BOc3LH2c8eLQGTjfISj91iGrowj/
+vEirEVHcBecvsZnz5M+hpXB+mNubTR5uE+xhfOlw4+cnPLbA+Z6h6ywnbT0I
+51/prOK9/OIknL+04v7UF78uwPl33+feNNhzBc6v1bmxuOncDTh/1pp1i+bO
+vgPniy1OWHxa6wGcP+nSdQtfg0dw/lnl1gxj4SdwfkVUmPJuhadwvvJE9XtO
+es/gfABtgJZU
+            "]]},
+          Annotation[#, "Charting`Private`Tag$280539#1"]& ]}, {}}},
+      AspectRatio->Full,
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{-2.30258509299404, 2.3025850929940512`},
+      BaseStyle->{FontSize -> 14, FontFamily -> "Helvetica"},
+      DisplayFunction->Identity,
+      Frame->{{True, True}, {True, True}},
+      FrameLabel->{{
+         FormBox[
+         "\"\\!\\(\\*SuperscriptBox[SubscriptBox[\\(T\\), \\(2\\)], \
+\\(Hahn\\)]\\) (\[Mu]s)\"", TraditionalForm], None}, {
+         FormBox["\"Electron temp (K)\"", TraditionalForm], None}},
+      FrameStyle->GrayLevel[0],
+      FrameTicks->{{{{
+           NCache[
+            Log[20], 2.995732273553991], 
+           FormBox[
+            TagBox["20", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[50], 3.912023005428146], 
+           FormBox[
+            TagBox["50", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[100], 4.605170185988092], 
+           FormBox[
+            TagBox["100", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[200], 5.298317366548036], 
+           FormBox[
+            TagBox["200", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[500], 6.214608098422191], 
+           FormBox[
+            TagBox["500", HoldForm], 
+            TraditionalForm]}}, {}}, {{{-2.3025850929940455`, 
+           FormBox[
+            TagBox["0.1`", HoldForm], 
+            TraditionalForm]}, {-1.6094379124341003`, 
+           FormBox[
+            TagBox["0.2`", HoldForm], TraditionalForm]}, {-0.6931471805599453, 
+           FormBox[
+            TagBox["0.5`", HoldForm], TraditionalForm]}, {0, 
+           FormBox[
+            TagBox["1", HoldForm], TraditionalForm]}, {
+           NCache[
+            Log[2], 0.6931471805599453], 
+           FormBox[
+            TagBox["2", HoldForm], TraditionalForm]}}, {}}},
+      GridLines->
+       NCache[{{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+          Log[20], 
+          Log[50], 
+          Log[100], 
+          Log[
+          200]}}, {{-2.3025850929940455`, -1.6094379124341003`, \
+-1.2039728043259361`, -0.916290731874155, -0.6931471805599453, 0}, {
+         2.995732273553991, 3.912023005428146, 4.605170185988092, 
+         5.298317366548036}}],
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->{{52., 5.}, {38., 7.000000000000014}},
+      ImageSize->{230, 200},
+      Method->{
+       "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+        "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            Exp[
+             Part[#, 1]], 
+            Exp[
+             Part[#, 2]]}& )}},
+      PlotRange->{{-2.3025850929940455`, 0.6931471805599453}, {
+       2.302585092994046, 5.298317366548036}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{0, 0}, {0, 0}},
+      Ticks->{
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0], 
+        Charting`ScaledTicks[{Log, Exp}, {Log, Exp}, "Nice", WorkingPrecision -> 
+         15.954589770191003`, RotateLabel -> 0]}], {610, -105.}, 
+     ImageScaled[{0.5, 0.5}], {230, 200}]}, {}},
+  ImageSize->{
+    UpTo[600], 
+    UpTo[207]},
+  PlotRange->{{0, 732}, {-210., 0}},
+  PlotRangePadding->{6, 5}]], "Output",
+ CellChangeTimes->{3.985979123562867*^9, 3.98597916940269*^9, 
+  3.986076261077634*^9, 3.9866193902355957`*^9},
+ CellLabel->"Out[62]=",ExpressionUUID->"6af27e74-a741-4cf4-a1fe-d64cfd783ce2"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"56e6d52d-c1c9-4df3-928c-0f05586ff77e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 28117, 734, 3392, "Input",ExpressionUUID->"fb277407-84e2-4b79-bd42-56143f0f2650"],
+Cell[CellGroupData[{
+Cell[28722, 760, 776, 20, 24, "Print",ExpressionUUID->"1eea3128-c93b-4ee8-b58b-9ba338bcf076"],
+Cell[29501, 782, 772, 20, 24, "Print",ExpressionUUID->"f9a0835d-a34a-4654-ac6a-9abce71a60d0"],
+Cell[30276, 804, 768, 20, 24, "Print",ExpressionUUID->"34d4eb92-2f46-4593-ad37-c401b92c02a1"]
+}, Open  ]],
+Cell[31059, 827, 80983, 1772, 217, "Output",ExpressionUUID->"6af27e74-a741-4cf4-a1fe-d64cfd783ce2"]
+}, Open  ]]
+}
+]
+*)
+

@@ -46,7 +46,7 @@ You may also run individual figures by opening the **`Code and Figures`** direct
 ## Output
 The code and results pertaining to each figure are located in a subdirectory reserved for that figure. Please navigate to the appropriate subdirectory to view the results, e.g. **`Code and Figures/Figure 2`** contains the code and output generated for Figure 2 in the paper. The Matlab code generates .mat files and .csv files for the data generated and .fig, .png. and .svg files for the figures. 
 
-Note that figure 2b as formatted for the paper was generated using a Mathematica file, which has been included in **`Code and Figures/Figure 2/figure 2B numerical data of rate versus Gamma`** for convenience, however the data is generated using the Matlab code in **`Code and Figures/Figure 2/Run_Figure2b.m`**.
+Note that figure 2b as formatted for the paper was generated using a Mathematica file, which has been included in `Code and Figures/Figure 2/figure 2B numerical data of rate versus Gamma` for convenience, however the data is generated using the Matlab code in `Code and Figures/Figure 2/Run_Figure2b.m`.
 ---
 
 ## Troubleshooting

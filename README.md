@@ -39,7 +39,7 @@ Requires MATLAB 2024a or more recent.
 
 **`Run_all_Figures.m`** run time: >72 hours.  
 
-You may also run individual figures by opening the **`Code and Figures`** directory and then chosing the subdirectory corresponding to the figure or interest. Then open the figure run script of interest in MATLAB (for example, `Run_Figure2b.m`). You may then run the code for just that figure by selecting **Run** in MATLAB. Note that `Run_FigureS1.m` requires you to first execute `Run_AddFig.m` located at **`Code and Figures/figures for supplemental/Additional Figures/Run_AddFig.m`**.
+You may also run individual figures by opening the **`Code and Figures`** directory and then chosing the subdirectory corresponding to the figure of interest. Then open the figure run script of interest in MATLAB (for example, `Run_Figure2b.m`). You may then run the code for just that figure by selecting **Run** in MATLAB. Note that `Run_FigureS1.m` requires you to first execute `Run_AddFig.m` located at **`Code and Figures/figures for supplemental/Additional Figures/Run_AddFig.m`**.
 
 ---
 

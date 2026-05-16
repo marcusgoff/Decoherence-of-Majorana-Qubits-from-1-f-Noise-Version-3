@@ -21,7 +21,7 @@ Requires MATLAB 2024a or more recent.
 1. Click the green **"Code"** drop-down menu at the top of this page.  
 2. Select **"Download ZIP"**.  
 3. Unzip the contents into a local directory.  
-4. Open **`Run_all_Figures.m`** in MATLAB. Alternatively, open "Code and Figures" and navigate to the directory corresponding to the figure of interest, e.g. **`Figure 2`**, and open the .m file in that directory, e.g. "Run_Figure2b.m". 
+4. Open **`Run_all_Figures.m`** in MATLAB. Alternatively, open "Code and Figures" and navigate to the directory corresponding to the figure of interest, e.g. **`Figure 2`**, and open the .m file in that directory, e.g. **`Run_Figure2b.m`**. 
 5. In MATLAB, go to the **Editor** tab, select the **Editor** tab and then select **Run**.  
 6. If prompted to *Change Folder* to the current directory, choose **Change Folder** (highlighted option).  
 

@@ -13,8 +13,7 @@ Note that since our numerical results are statistical averages over multiple two
 ---
 
 ## Environment and Dependencies
-Requires MATLAB 2024a or more recent.  
-Mathematica
+Requires MATLAB 2024a or more recent and Mathematica.
 
 ---
 
